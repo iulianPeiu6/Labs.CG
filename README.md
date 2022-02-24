@@ -2,4 +2,4 @@
 
 ## Homework1
 
-[Requirements](https://profs.info.uaic.ro/~ghirvu/gpc-en/homework1/)
+ - [Requirements](https://profs.info.uaic.ro/~ghirvu/gpc-en/homework1/)
