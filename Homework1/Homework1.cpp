@@ -26,7 +26,7 @@ void Display1() {
 }
 
 void Display2() {
-    glColor3f(1, 0.1, 0.1); // red
+    glColor3f(1, 0.1, 0.1);
     glBegin(GL_LINES);
     glVertex2f(1.0, 1.0);
     glVertex2f(0.9, 0.9);
@@ -40,7 +40,7 @@ void Display2() {
 }
 
 void Display3() {
-    glColor3f(1, 0.1, 0.1); // red
+    glColor3f(1, 0.1, 0.1);
     glBegin(GL_POINTS);
     glVertex2f(-0.5, -0.5);
     glVertex2f(-0.5, 0.5);
@@ -50,7 +50,7 @@ void Display3() {
 }
 
 void Display4() {
-    glColor3f(1, 0.1, 0.1); // red
+    glColor3f(1, 0.1, 0.1);
     glBegin(GL_LINE_STRIP);
     glVertex2f(1.0, 1.0);
     glVertex2f(1.0, 0.9);
@@ -60,7 +60,7 @@ void Display4() {
 }
 
 void Display5() {
-    glColor3f(1, 0.1, 0.1); // red
+    glColor3f(1, 0.1, 0.1);
     glBegin(GL_LINE_LOOP);
     glVertex2f(1.0, 1.0);
     glVertex2f(1.0, 0.9);
@@ -71,7 +71,7 @@ void Display5() {
 }
 
 void Display6() {
-    glColor3f(1, 0.1, 0.1); // red
+    glColor3f(1, 0.1, 0.1);
     glBegin(GL_TRIANGLES);
     glVertex2f(1.0, 1.0);
     glVertex2f(0.9, 0.9);
@@ -83,7 +83,7 @@ void Display6() {
 }
 
 void Display7() {
-    glColor3f(1, 0.1, 0.1); // red
+    glColor3f(1, 0.1, 0.1);
     glBegin(GL_QUADS);
     glVertex2f(1.0, 1.0);
     glVertex2f(0.5, 0.75);
@@ -106,13 +106,13 @@ void drawHex(double sideDim) {
 }
 
 void Display8() {
-    glColor3f(0.2, 0.15, 0.88); // blue
+    glColor3f(0.2, 0.15, 0.88);
     drawHex(0.5);
 
-    glColor3f(1, 0.1, 0.1); // red
+    glColor3f(1, 0.1, 0.1);
     drawHex(0.4);
 
-    glColor3f(1.0, 1.0, 1.0); // red
+    glColor3f(1.0, 1.0, 1.0);
     drawHex(0.39);
 }
 
