@@ -262,7 +262,7 @@ public:
 
         v.deseneaza(p, 0.25);
         p = v.getDest(p, 0.25);
-        drawRecursive(lungime, nivel, 0.4, p, v, false);
+        drawRecursive(lungime, nivel, 0.4, p, v);
     }
 
 private:
@@ -270,8 +270,7 @@ private:
         int depth,
         double factordiviziune,
         CPunct p,
-        CVector v,
-        bool branchType)
+        CVector v)
     {
         assert(factordiviziune != 0);
         CPunct p1, p2;
@@ -280,36 +279,34 @@ private:
         }
         else
         {
-            if (!branchType) {
-                v.rotatie(-45);
-            } 
-            else {
-                v.rotatie(-90);
-            }
-            
+            v.rotatie(-45);
             v.deseneaza(p, lungime);
             p1 = v.getDest(p, lungime);
-            drawRecursive(lungime * factordiviziune, depth - 1, factordiviziune, p1, v, branchType);
+            drawRecursive(lungime * factordiviziune, depth - 1, factordiviziune, p1, v);
 
-            if (!branchType) {
-                v.rotatie(90);
-            }
-            else {
-                v.rotatie(120);
-            }
-
+            v.rotatie(90);
             v.deseneaza(p, lungime);
             p2 = v.getDest(p, lungime);
 
-            v.rotatie(-45);
+            v.rotatie(15);
             v.deseneaza(p2, lungime);
             p1 = v.getDest(p2, lungime);
-            drawRecursive(lungime * factordiviziune, depth - 1, factordiviziune, p1, v, !branchType);
+            drawRecursive(lungime * factordiviziune, depth - 1, factordiviziune, p1, v);
 
-            v.rotatie(60);
+            v.rotatie(-60);
             v.deseneaza(p2, lungime);
             p1 = v.getDest(p2, lungime);
-            drawRecursive(lungime * factordiviziune, depth - 1, factordiviziune, p1, v, branchType);
+            p2 = p1;
+
+            v.rotatie(-90);
+            v.deseneaza(p2, lungime / 2);
+            p1 = v.getDest(p2, lungime / 2);
+            drawRecursive(lungime * factordiviziune, depth - 1, factordiviziune, p1, v);
+
+            v.rotatie(120);
+            v.deseneaza(p2, lungime / 2);
+            p1 = v.getDest(p2, lungime / 2);
+            drawRecursive(lungime * factordiviziune / 2, depth - 1, factordiviziune, p1, v);
         }
     }
 };
