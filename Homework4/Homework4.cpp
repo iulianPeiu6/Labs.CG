@@ -45,7 +45,7 @@ public:
         glBegin(GL_TRIANGLE_FAN);
         glVertex2f(Normalized(x1), Normalized(y1));
 
-        for (angle = 0.0; angle < 2 * 3.14159; angle += 0.2)
+        for (angle = 0.0; angle < 2 * 3.14159; angle += 0.01)
         {
             double x2 = x1 + sin(angle) * radius;
             double y2 = y1 + cos(angle) * radius;
@@ -65,6 +65,7 @@ public:
     }
 
     void DrawLine(int fromI, int fromJ, int toI, int toJ, int width = 1) {
+        DrawRawLine(fromI, fromJ, toI, toJ);
         float slope = 1.0 * (toJ - fromJ) / (toI - fromI);
 
         width--;
@@ -73,10 +74,9 @@ public:
             std::swap(fromJ, toJ);
         }
 
-
         int dx = (toI - fromI);
         int dy = (toJ - fromJ);
-        int direction = toJ > fromJ ? -1 : 1;
+        int direction = toJ > fromJ ? -1 : 1; // NE: 1, SE: -1
         int d = 2 * dy + direction * dx;
         int dLine = 2 * dy;
         int dDiag = 2 * (dy + direction * dx);
@@ -93,7 +93,6 @@ public:
             i++;
             DrawMatrixPoints(i, i, j - width, j + width);
         }
-        
     }
 
 private:
@@ -122,6 +121,19 @@ private:
             glVertex2d(Normalized(1), Normalized(y));
             glEnd();
         }
+    }
+
+    void DrawRawLine(int fromI, int fromJ, int toI, int toJ) {
+        double x1 = 1.0 / this->width * fromI;
+        double y1 = 1.0 / this->height * fromJ;
+        double x2 = 1.0 / this->width * toI;
+        double y2 = 1.0 / this->height * toJ;
+
+        glBegin(GL_LINES);
+        glColor3f(1.0, 0.1, 0.1);
+        glVertex2d(Normalized(x1), Normalized(y1));
+        glVertex2d(Normalized(x2), Normalized(y2));
+        glEnd();
     }
 
     double Normalized(double x) {
