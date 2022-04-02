@@ -26,9 +26,8 @@ public:
         for (double x = this->fromX; x <= this->toX; x += ratia) {
             for (double y = this->fromY; y <= this->toY; y += ratia) {
                 std::complex<double> c(x, y);
-                if (belongsToMandelbrotSet(c)) {
-                    drawPoint(c);
-                }
+                int belongingGrade = belongingGradeToMandelbrotSet(c);
+                drawPoint(c, belongingGrade);
             }
         }
     }
@@ -38,25 +37,30 @@ private:
     double ratia;
     double maxIterations;
 
-    bool belongsToMandelbrotSet(std::complex<double> c) {
+    int belongingGradeToMandelbrotSet(std::complex<double> c) {
         std::complex<double> z(0, 0);
 
         for (int i = 0; i < this->maxIterations; i++) {
             if (abs(z) > 2) {
-                return false;
+                return i;
             }
             z = z * z + c;
         }
 
-        return true;
+        return this->maxIterations;
     }
 
-    void drawPoint(std::complex<double> c) {
+    void drawPoint(std::complex<double> c, int gradeColor) {
         c = normalized(c);
-        glColor3f(1.0, 0.1, 0.1);
+        setDrawingColor(gradeColor);
+        //glColor3f(1.0, 0.1, 0.1);
         glBegin(GL_POINTS);
         glVertex2f(c.real(), c.imag());
         glEnd();
+    }
+
+    void setDrawingColor(int grade) {
+        glColor3f(1.0 - grade / this->maxIterations - 0.5, 1.0 - grade / this->maxIterations - 0.5, 1.0 - grade / this->maxIterations - 0.5);
     }
 
     std::complex<double> normalized(std::complex<double> c) {
